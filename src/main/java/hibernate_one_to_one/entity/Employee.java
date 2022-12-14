@@ -1,4 +1,4 @@
-package hibernate_test.entity;
+package hibernate_one_to_one.entity;
 
 import javax.persistence.*;
 
@@ -7,20 +7,19 @@ import javax.persistence.*;
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name="id")
     private int id;
-
-    @Column(name = "name")
+    @Column(name="name")
     private String name;
-
-    @Column(name = "surname")
+    @Column(name="surname")
     private String surname;
-
-    @Column(name = "department")
+    @Column(name="department")
     private String department;
-
-    @Column(name = "salary")
+    @Column(name="salary")
     private int salary;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "details_id")
+    private Detail empDetail;
 
     public Employee() {
     }
@@ -70,6 +69,14 @@ public class Employee {
 
     public void setSalary(int salary) {
         this.salary = salary;
+    }
+
+    public Detail getEmpDetail() {
+        return empDetail;
+    }
+
+    public void setEmpDetail(Detail empDetail) {
+        this.empDetail = empDetail;
     }
 
     @Override

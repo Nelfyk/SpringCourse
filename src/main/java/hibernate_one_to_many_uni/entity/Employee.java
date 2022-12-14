@@ -1,34 +1,27 @@
-package hibernate_test_2.entity;
+package hibernate_one_to_many_uni.entity;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "Employees")
+@Table(name = "employees")
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
     private int id;
-
     @Column(name="name")
     private String name;
-
     @Column(name="surname")
     private String surname;
-
-    @Column(name="department")
-    private String department;
-
     @Column(name="salary")
     private int salary;
 
     public Employee() {
     }
 
-    public Employee(String name, String surname, String department, int salary) {
+    public Employee(String name, String surname, int salary) {
         this.name = name;
         this.surname = surname;
-        this.department = department;
         this.salary = salary;
     }
 
@@ -56,14 +49,6 @@ public class Employee {
         this.surname = surname;
     }
 
-    public String getDepartment() {
-        return department;
-    }
-
-    public void setDepartment(String department) {
-        this.department = department;
-    }
-
     public int getSalary() {
         return salary;
     }
@@ -78,8 +63,7 @@ public class Employee {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
-                ", department='" + department + '\'' +
-                ", salary='" + salary + '\'' +
+                ", salary=" + salary +
                 '}';
     }
 }
